@@ -1,0 +1,14 @@
+{
+    "name": "SpotifyUpdateBot",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "start": "node spotify_bot.js"
+    },
+    "dependencies": {
+        "cron": "^1.8.2",
+        "jquery": "^3.6.0",
+        "jsdom": "^18.0.1",
+        "request": "^2.88.2"
+    }
+}
