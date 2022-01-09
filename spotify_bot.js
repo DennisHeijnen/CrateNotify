@@ -10,15 +10,13 @@ global.document = document;
 
 var $ = jQuery = require('jquery')(window);
 
-var client_id = 'f27cec08a0364db0976e756f955e3ed8'; // Your client id
-var client_secret = 'b89c593086554ebba945d6129917366d'; // Your secret
-
+require('dotenv').config();
 
 // your application requests authorization
 var authOptions = {
   url: 'https://accounts.spotify.com/api/token',
   headers: {
-    'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+    'Authorization': 'Basic ' + (new Buffer(process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET).toString('base64'))
   },
   form: {
     grant_type: 'client_credentials'
@@ -31,8 +29,6 @@ function SpotifyUpdateBot() {
 		if (!error && response.statusCode === 200) {
 
 			var spotify_token = body.access_token;
-			var telegram_bot_token = "2082719713:AAHGKzUjQAjCgOEUG8BV-A6Bm2hqFbQrZSM";
-			var chat_id = "-624613964";
 			var user_id = "nederlandse_top_40";
 			var limit = "5";
 			var playlist_url = "https://api.spotify.com/v1/users/"+user_id+"/playlists?limit="+limit;
@@ -105,7 +101,7 @@ function SpotifyUpdateBot() {
 							new_tracks = encodeURI(new_tracks);
 							new_tracks = new_tracks.replace('&', '%26');
 
-							var api_url = "https://api.telegram.org/bot"+telegram_bot_token+"/sendMessage?chat_id="+chat_id+"&text="+new_tracks+"&disable_web_page_preview=true";
+							var api_url = "https://api.telegram.org/bot"+process.env.TELEGRAM_BOT_TOKEN+"/sendMessage?chat_id="+process.env.CHAT_ID+"&text="+new_tracks+"&disable_web_page_preview=true";
 					
 							$.ajax({
 								url: api_url,
