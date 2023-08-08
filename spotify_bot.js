@@ -10,7 +10,11 @@ global.document = document;
 
 var $ = jQuery = require('jquery')(window);
 
+const express = require("express");
+
 require('dotenv').config();
+
+app = express();
 
 // your application requests authorization
 var authOptions = {
@@ -122,3 +126,5 @@ var job = new CronJob('*/1 * * * *', function() {
   SpotifyUpdateBot();
 });
 job.start();
+
+app.listen(3000);
