@@ -16,7 +16,7 @@ require('dotenv').config();
 var authOptions = {
   url: 'https://accounts.spotify.com/api/token',
   headers: {
-    'Authorization': 'Basic ' + (new Buffer(process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET).toString('base64'))
+    'Authorization': 'Basic ' + (Buffer.from(process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET).toString('base64'))
   },
   form: {
     grant_type: 'client_credentials'
@@ -117,7 +117,7 @@ function SpotifyUpdateBot() {
 	});
 };
 
-var job = new CronJob('*/1 * * * *', function() {
+var job = new CronJob('*/5 * * * *', function() {
   console.log('You will see this message every second');
   SpotifyUpdateBot();
 });
