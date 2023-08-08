@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-        "start": "PORT=8080 node spotify_bot.js"
+        "start": "node spotify_bot.js"
     },
     "dependencies": {
         "cron": "^1.8.2",
