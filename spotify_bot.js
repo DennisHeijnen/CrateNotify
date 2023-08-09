@@ -121,7 +121,7 @@ function SpotifyUpdateBot() {
 	});
 };
 
-var job = new CronJob('*/1 * * * *', function() {
+var job = new CronJob('* 15 * * 3', function() {
   console.log('You will see this message every minute');
   SpotifyUpdateBot();
 });
